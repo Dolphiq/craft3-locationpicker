@@ -1,0 +1,9 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.textField({
+    first: true,
+    label: "Google Maps API Key",
+    instructions: "You can get a google maps API Key at <a href='https://developers.google.com/maps/documentation/javascript/'>https://developers.google.com/maps/documentation/javascript</a>",
+    name: 'apiKey',
+    value: settings.apiKey
+}) }}

@@ -1,0 +1,49 @@
+{
+  "name": "dolphiq/craft3-locationpicker",
+  "description": "Craft Location picker",
+  "version": "1.0.0",
+  "keywords": [
+    "craft",
+    "craft3",
+    "cms",
+    "craftcms",
+    "craft-plugin",
+    "plugin",
+    "google",
+    "maps",
+    "location",
+    "picker",
+    "location-picker",
+    "yii",
+    "yii2"
+  ],
+  "type": "craft-plugin",
+  "minimum-stability": "beta",
+  "require": {
+    "craftcms/cms": "^3.0.0-alpha.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "plugins\\dolphiq\\locationPicker\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Dolphiq",
+      "email": "info@dolphiq.nl",
+      "homepage": "https://dolphiq.nl/"
+    }
+  ],
+  "extra": {
+    "handle": "dolphiq-craft3-locationpicker",
+    "name": "Location Picker",
+    "description": "Craft locationpicker plugin that will let you pick a location from google maps, and display it on your site with a google map",
+    "schemaVersion": "1.0.0",
+    "developer": "Dolphiq",
+    "developerUrl": "https://dolphiq.nl/",
+    "hasCpSettings": true,
+    "hasCpSection": false,
+    "documentationUrl": "https://github.com/Dolphiq/craft3-locationpicker/blob/master/README.md",
+    "changelogUrl": "https://raw.githubusercontent.com/Dolphiq/craft3-locationpicker/master/CHANGELOG.md"
+  }
+}
