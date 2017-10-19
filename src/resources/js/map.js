@@ -2,15 +2,31 @@
  * Created by lucasweijers on 16-08-17.
  */
 
-function dolphiqMap(){
+var dolphiqMapLoaded = false;
+var loadingMaps = [];
 
-  console.log('called');
+// This function will be called by google maps
+function initDolphiqMap(){
+  dolphiqMapLoaded = true;
+}
 
+// This function will be called from script and keeps checking if google maps js is loaded
+function loadDolphiqMap(id, locations){
+  loadingMaps[id] = setInterval(function() {
+    if(dolphiqMapLoaded === true) {
+      clearInterval(loadingMaps[id]);
+      dolphiqMap(id,locations);
+    }
+  }, 10);
+}
+
+// This function will be called from above function if google maps js is loaded. it will render the map
+function dolphiqMap(id,locations){
   var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   var bounds = new google.maps.LatLngBounds();
   var initialMaxZoom = 4;
 
-  var map = new google.maps.Map(document.getElementById('dolphiqMap'), {
+  var map = new google.maps.Map(document.getElementById(id), {
     styles: dolphiqMapStyles,
   });
 
@@ -23,18 +39,20 @@ function dolphiqMap(){
   });
 
 
-  // Add some markers to the map.
+  // Add the markers to the map.
   // Note: The code uses the JavaScript Array.prototype.map() method to
   // create an array of markers based on a given "locations" array.
   // The map() method here has nothing to do with the Google Maps API.
-  var markers = dolphiqMap_locations.map(function(location, i) {
-    var marker = new google.maps.Marker({
-      position: {lat: parseFloat(location.lat), lng: parseFloat(location.long)},
-      label: labels[i % labels.length]
-    });
+  var markers = locations.map(function(location, i) {
+    if(location.lat !== undefined && location.long !== undefined) {
+      var marker = new google.maps.Marker({
+        position: {lat: parseFloat(location.lat), lng: parseFloat(location.long)},
+        label: labels[i % labels.length]
+      });
 
-    bounds.extend(marker.position);
-    return marker;
+      bounds.extend(marker.position);
+      return marker;
+    }
   });
 
   var markerCluster = new MarkerClusterer(map, markers, {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
@@ -42,7 +60,7 @@ function dolphiqMap(){
   map.fitBounds(bounds);
 }
 
-
+/**@TODO set styles from the settings in the CP **/
 var dolphiqMapStyles = [
   {
     "featureType": "all",
