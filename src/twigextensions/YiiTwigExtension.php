@@ -40,19 +40,17 @@ class YiiTwigExtension extends Twig_Extension
 
 
     //@TODO Enable the use of this function for multiple maps. So we have to generate a unique ID for the div and in JS (See the iconpicker plugin on how to do that)
-    public function dolphiqMap($locations = [], $width, $height){
+    public function dolphiqMap($locations = [], $width = '100%', $height = '500px'){
 
         if(!empty($locations) && is_array($locations) && !empty(array_filter($locations))) {
             $uniqueID = 'dolphiqlocation-' . uniqid() . '-' . time();
             $json_locations = json_encode($locations);
 
-            $locationsJS = "var dolphiqMap_locations = " . json_encode($locations) . ";";
             $script = <<<JS
 loadDolphiqMap('$uniqueID', $json_locations);
 JS;
 
             Craft::$app->view->registerAssetBundle(siteAsset::className());
-            Craft::$app->view->registerJs($locationsJS, View::POS_HEAD);
             Craft::$app->view->registerJs($script, View::POS_HEAD);
             Craft::$app->view->registerJsFile('https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js');
             Craft::$app->view->registerJsFile('https://maps.googleapis.com/maps/api/js?key=' . \plugins\dolphiq\locationPicker\Plugin::getInstance()->getSettings()->apiKey . '&callback=initDolphiqMap', ['defer' => 'defer', 'async' => 'async']);
