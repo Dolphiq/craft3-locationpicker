@@ -57,7 +57,7 @@ Display a google map with the choosen location in a twig template
        
     
 ## Usage sample to display a map with more locations
-To display more locations on the same map (a marker for every location), we use the twig function `dolphiqMap`
+To display more locations on the same map (a marker for every location), we use the twig function `dolphiqMap`.
 Lets say we have a structure called `hospitals` with entries that each have a location field. 
 To display a map with all locations do the following in a twig template:
 
