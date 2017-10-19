@@ -20,6 +20,10 @@ class LocationModel extends Model{
     public $address = "";
 
     private $uniqueId;
+    private $defaultOptions = [
+        'width' => '50%',
+        'height' => '500px'
+    ];
 
     public function rules()
     {
@@ -35,22 +39,24 @@ class LocationModel extends Model{
         ];
     }
 
-    public function getMap(){
+    public function getMap($options = []){
+
+        $options = array_merge($this->defaultOptions, $options);
 
         // Load assets for map. Assetmanager will determine if they are already loaded
         $this->registerAssets();
 
-        $uniqueId = $this->getUniqueId();
+        $uniqueID = $this->getUniqueId();
         $json_locations = json_encode([$this->attributes]);
 
         $script = <<<SCRIPT
-loadDolphiqMap('$uniqueId', $json_locations);
+loadDolphiqMap('$uniqueID', $json_locations);
 SCRIPT;
 
         Craft::$app->view->registerJs($script);
 
 
-        return '<div id="'.$uniqueId.'" class="dolphiqMap"></div>';
+        return '<div class="dolphiqMap" id="'.$uniqueID.'" style="width: ' . $options['width'] . ';height: ' . $options['height'] . '; display: block;"></div>';
     }
 
     public function getUniqueId(){
