@@ -20,7 +20,7 @@ You also have the possibility to group multiple chosen locations.
 3. The Location Field type will be available when adding a new field - Settings > Fields > Add new field
 
 ## Creating a field with the location field type
-1. Choose the `Locatoin Field` type
+1. Choose the `Location Field` type
 2. Save the field
 
 ## Using the location field type
