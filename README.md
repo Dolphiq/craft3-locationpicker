@@ -88,3 +88,10 @@ Properties of the `dolphiqMap(locations, options)` function
 | ------------- | ------------- | ------- | -------------------------------------------------------------------------------------- |
 | width         | string        | 100%    | The width of the google map. In css units. So you can use percentage as wel as pixels  |
 | height        | string        | 500px   | The height of the google map. In css units. So you can use percentage as wel as pixels |
+
+
+## Contributors & Developers
+   
+Lucas Weijers - Original developer 
+
+Brought to you by Dolphiq: info@dolphiq.nl
