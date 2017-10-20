@@ -14,7 +14,7 @@ You also have the possibility to group multiple chosen locations.
 
 1. Install with Composer
     
-       composer require dolphiq/craf3-locationpicker
+       composer require dolphiq/craft3-locationpicker
        
 2. Install plugin in the Craft Control Panel under Settings > Plugins
 3. The Location Field type will be available when adding a new field - Settings > Fields > Add new field
