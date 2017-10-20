@@ -11,6 +11,7 @@ namespace plugins\dolphiq\locationPicker;
 
 use Craft;
 use plugins\dolphiq\locationPicker\fields\Location;
+use plugins\dolphiq\locationPicker\models\snazzyMaps;
 use plugins\dolphiq\locationPicker\twigextensions\YiiTwigExtension;
 use craft\events\RegisterComponentTypesEvent;
 use craft\services\Fields;
@@ -41,8 +42,12 @@ class Plugin extends \craft\base\Plugin
 
     protected function settingsHtml()
     {
+        $maps = new snazzyMaps();
+        $styles = $maps->getStyles();
+
         return \Craft::$app->getView()->renderTemplate('dolphiq-craft3-locationpicker/settings', [
-            'settings' => $this->getSettings()
+            'settings' => $this->getSettings(),
+            'styles' => $styles,
         ]);
     }
 }
