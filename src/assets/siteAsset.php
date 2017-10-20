@@ -9,6 +9,7 @@ namespace plugins\dolphiq\locationPicker\assets;
 
 use craft\web\AssetBundle;
 use craft\web\assets\cp\CpAsset;
+use plugins\dolphiq\locationPicker\Plugin;
 use yii\web\JqueryAsset;
 use yii\web\View;
 
@@ -22,6 +23,7 @@ class siteAsset extends AssetBundle
         // define the relative path to CSS/JS files that should be registered with the page
         // when this asset bundle is registered
         $this->js = [
+            'js/defaultStyle.js',
             'js/map.js',
         ];
 

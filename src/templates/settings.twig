@@ -3,7 +3,16 @@
 {{ forms.textField({
     first: true,
     label: "Google Maps API Key",
-    instructions: "You can get a google maps API Key at <a href='https://developers.google.com/maps/documentation/javascript/'>https://developers.google.com/maps/documentation/javascript</a>",
+    instructions: "You can get a google maps API Key at <a target='_blank' href='https://developers.google.com/maps/documentation/javascript/'>https://developers.google.com/maps/documentation/javascript</a>",
     name: 'apiKey',
     value: settings.apiKey
+}) }}
+
+{{ forms.textAreaField({
+    errors: settings.getErrors('mapStyle'),
+    label: "Google Maps Style JSON",
+    instructions: "You can search a nice style on <a target='_blank' href='https://snazzymaps.com/explore'>https://snazzymaps.com/explore</a>. Copy and paste the JSON data for that style here",
+    name: 'mapStyle',
+    value: settings.mapStyle,
+    rows: 20,
 }) }}

@@ -5,6 +5,7 @@ namespace plugins\dolphiq\locationPicker\models;
 use Craft;
 use craft\base\Model;
 use plugins\dolphiq\locationPicker\assets\siteAsset;
+use plugins\dolphiq\locationPicker\Plugin;
 
 /**
  * Created by PhpStorm.
@@ -42,6 +43,7 @@ class LocationModel extends Model{
     public function getMap($options = []){
 
         $options = array_merge($this->defaultOptions, $options);
+        $mapStyle = Plugin::getInstance()->getSettings()->mapStyle;
 
         // Load assets for map. Assetmanager will determine if they are already loaded
         $this->registerAssets();
@@ -49,12 +51,19 @@ class LocationModel extends Model{
         $uniqueID = $this->getUniqueId();
         $json_locations = json_encode([$this->attributes]);
 
-        $script = <<<SCRIPT
+        $locations = <<<SCRIPT
 loadDolphiqMap('$uniqueID', $json_locations);
 SCRIPT;
 
-        Craft::$app->view->registerJs($script);
+        if(!empty($mapStyle)) {
+            $style = <<<SCRIPT
+dolphiqMapStyles['$uniqueID'] = $mapStyle;
+SCRIPT;
+            Craft::$app->view->registerJs($style);
+        }
 
+
+        Craft::$app->view->registerJs($locations);
 
         return '<div class="dolphiqMap" id="'.$uniqueID.'" style="width: ' . $options['width'] . ';height: ' . $options['height'] . '; display: block;"></div>';
     }

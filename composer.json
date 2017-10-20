@@ -20,7 +20,8 @@
   "type": "craft-plugin",
   "minimum-stability": "beta",
   "require": {
-    "craftcms/cms": "^3.0.0-alpha.1"
+    "craftcms/cms": "^3.0.0-alpha.1",
+    "romi45/yii2-json-validator": "^1.1"
   },
   "autoload": {
     "psr-4": {

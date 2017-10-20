@@ -7,6 +7,7 @@ use craft\helpers\UrlHelper;
 use plugins\dolphiq\form\models\vacancyForm;
 use plugins\dolphiq\form\controllers\MainController;
 use plugins\dolphiq\locationPicker\assets\siteAsset;
+use plugins\dolphiq\locationPicker\Plugin;
 use Twig_Extension;
 use Twig_SimpleFilter;
 use Twig_SimpleFunction;
@@ -51,11 +52,18 @@ class YiiTwigExtension extends Twig_Extension
 
         if(!empty($locations) && is_array($locations) && !empty(array_filter($locations))) {
             $uniqueID = 'dolphiqlocation-' . uniqid() . '-' . time();
+            $mapStyle = Plugin::getInstance()->getSettings()->mapStyle;
             $json_locations = json_encode($locations);
 
             $script = <<<JS
 loadDolphiqMap('$uniqueID', $json_locations);
 JS;
+            if(!empty($mapStyle)) {
+                $style = <<<SCRIPT
+dolphiqMapStyles['$uniqueID'] = $mapStyle;
+SCRIPT;
+                Craft::$app->view->registerJs($style, View::POS_HEAD);
+            }
 
             Craft::$app->view->registerAssetBundle(siteAsset::className());
             Craft::$app->view->registerJs($script, View::POS_HEAD);
