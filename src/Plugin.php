@@ -26,7 +26,7 @@ class Plugin extends \craft\base\Plugin
         parent::init();
 
         // Register twig extention
-        Craft::$app->view->twig->addExtension(new YiiTwigExtension());
+        Craft::$app->view->registerTwigExtension(new YiiTwigExtension());
 
         // Register field type
         Event::on(Fields::class, Fields::EVENT_REGISTER_FIELD_TYPES, function(RegisterComponentTypesEvent $event) {
