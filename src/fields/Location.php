@@ -13,7 +13,7 @@ use craft\base\Field;
 use craft\base\Model;
 use craft\base\PreviewableFieldInterface;
 use craft\helpers\Db;
-use plugins\dolphiq\locationPicker\models\locationModel;
+use plugins\dolphiq\locationPicker\models\LocationModel;
 use yii\db\Schema;
 use yii\web\View;
 
